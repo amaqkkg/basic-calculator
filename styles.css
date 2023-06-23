@@ -1,0 +1,48 @@
+.header {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-width: 325px;
+}
+
+.display {
+  border: 1px solid black;
+  text-align: right;
+  font-size: 48px;
+}
+
+.button-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.operator-grid {
+  display: flex;
+}
+
+.number-grid {
+  display: flex;
+}
+
+.numbers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.side-button {
+  display: flex;
+  flex-direction: column;
+}
+
+.number,
+.delete,
+.calculate,
+.operator {
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 18px;
+  flex: 1;
+}
