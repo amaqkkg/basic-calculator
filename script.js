@@ -48,30 +48,63 @@ const operate = (firstNum, lastNum, operator) => {
 };
 
 const display = document.querySelector(".display");
-
-const buttons = document.querySelectorAll("button");
+const numbers = document.querySelectorAll(".number");
+const operators = document.querySelectorAll(".operator");
+const calculate = document.querySelector(".calculate");
+// const delete = document.querySelector(".delete");
 
 const saveNum = () => {
-  buttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      if (e.srcElement.classList == "number") {
+  numbers.forEach((number) => {
+    number.addEventListener("click", (e) => {
+      if (operator == null) {
+        if (displayedNumber == "0" || firstNum == null) {
+          displayedNumber = e.srcElement.id;
+        } else {
+          displayedNumber += e.srcElement.id;
+        }
+        display.textContent = displayedNumber;
+        firstNum = displayedNumber;
+        console.log(firstNum);
+      } else {
         if (displayedNumber == "0") {
           displayedNumber = e.srcElement.id;
         } else {
           displayedNumber += e.srcElement.id;
         }
         display.textContent = displayedNumber;
-      } else if (e.srcElement.classList == "operator") {
-        num = displayedNumber;
-        console.log(num);
-        displayedNumber = "0";
-        display.textContent = displayedNumber;
-        operator = e.srcElement.id;
-        console.log(operator);
-        return num;
+        lastNum = displayedNumber;
+        console.log(lastNum);
       }
     });
   });
 };
 
-saveNum();
+const setOperator = () => {
+  operators.forEach((operatorButton) => {
+    operatorButton.addEventListener("click", (e) => {
+      operator = e.srcElement.id;
+      displayedNumber = "0";
+      display.textContent = displayedNumber;
+    });
+  });
+};
+
+const startCalculate = () => {
+  calculate.addEventListener("click", (e) => {
+    if (firstNum != null && lastNum != null && operator != null) {
+      displayedNumber = operate(firstNum, lastNum, operator);
+      display.textContent = displayedNumber;
+      firstNum = null;
+      lastNum = null;
+      operator = null;
+    }
+  });
+};
+
+function start() {
+  saveNum();
+  setOperator();
+  startCalculate();
+}
+
+start();
